@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Zap } from 'lucide-react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import AdminDashboard from './AdminDashboard';
 import LandingPage from './LandingPage';
 import { db } from './firebase';
@@ -9,11 +8,7 @@ import { doc, getDoc } from 'firebase/firestore';
 function AdminRoute({ children }: { children: React.ReactNode }) {
   const [password, setPassword] = useState('');
   const [isAuthorized, setIsAuthorized] = useState(() => {
-    try {
-      return localStorage.getItem('admin_authorized') === 'true';
-    } catch (e) {
-      return false;
-    }
+    return localStorage.getItem('admin_authorized') === 'true';
   });
   const [correctPassword, setCorrectPassword] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -41,11 +36,7 @@ function AdminRoute({ children }: { children: React.ReactNode }) {
     e.preventDefault();
     if (password === correctPassword) {
       setIsAuthorized(true);
-      try {
-        localStorage.setItem('admin_authorized', 'true');
-      } catch (e) {
-        console.error("Failed to save to localStorage", e);
-      }
+      localStorage.setItem('admin_authorized', 'true');
     } else {
       alert('كلمة المرور خاطئة');
     }
@@ -91,18 +82,7 @@ export default function App() {
       <Routes>
         <Route path="/adminahmed" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
         <Route path="/:slug" element={<LandingPage />} />
-        <Route path="/" element={
-          <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center text-white p-4 text-center">
-            <div className="w-20 h-20 bg-blue-600 rounded-3xl flex items-center justify-center mb-6 shadow-2xl shadow-blue-500/20">
-              <Zap className="w-10 h-10 text-white" />
-            </div>
-            <h1 className="text-4xl font-black mb-4">نظام CPA PRO V2</h1>
-            <p className="text-slate-400 max-w-md">مرحباً بك في نظام إدارة عروض الـ CPA. يرجى التوجه إلى لوحة التحكم أو استخدام رابط العرض المباشر.</p>
-            <div className="mt-8 flex gap-4">
-              <a href="#/adminahmed" className="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-xl font-bold transition-all">لوحة التحكم</a>
-            </div>
-          </div>
-        } />
+        <Route path="/" element={<div className="min-h-screen bg-white"></div>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
